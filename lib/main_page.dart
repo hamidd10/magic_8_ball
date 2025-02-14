@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -8,17 +9,23 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  var magicChangePhoto = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Magic_8_ball'),
+        title: const Text('Magic_8_ball'),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: Container(
-        child: Center(
-          child: Image.asset('images/ball0.png'),
+      body: Center(
+        child: TextButton(
+          child: Image.asset('images/ball$magicChangePhoto.png'),
+          onPressed: () {
+            setState(() {
+              magicChangePhoto = Random().nextInt(5);
+            });
+          },
         ),
       ),
     );
